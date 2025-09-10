@@ -1,0 +1,46 @@
+Prac 2
+Step 1: Launch Vmware Workstation
+Open VMware Workstation from the desktop/start menu
+
+Step 2: Create a New Virtual Machine
+In the wizard choose Typical and click next.
+
+Step 3: Select the Installer Disk Image
+Choose Installer disc image file (iso)
+Click Browse and select your downloaded Ubuntu ISO file
+Click Next.
+
+Step 4: Guest Operating System Details
+VMware will detect Ubuntu automatically.
+It may ask for easy installation info like
+• Full name
+• Username
+• Password
+Fill it in and click next
+
+Step 5: Name the Virtual Machine
+Give your VM a name (eg. "Ubuntu VM")
+Choose the location to save the VM files (or leave default)
+Click Next
+
+Step 6: Specify Disk Capacity
+Recommended: 20GB or more
+Choose store virtual disk as a single file
+Click Next
+
+
+
+Step 7: Customize Hardware (Optional):
+Click Customize Hardware if you want to:
+• Allocate more RAM
+• Set processors
+• Enable virtualization options
+Click Close and then Finish.
+
+Step 8: Start the Virtual Machine
+VMware will boot the Ubuntu ISO and begin installation.
+If you used "Easy Install" Ubuntu may install automatically.
+
+After installation
+Once Ubuntu is installed you'll see the login screen
+Use the username/password you created earlier.
