@@ -1,0 +1,27 @@
+Login Button code :
+If(
+    !IsBlank(
+        LookUp(
+            Login_form,
+            UserName = DataCardValue8.Text And password = DataCardValue9.Text
+        )
+    ),
+    Navigate(Screen2),
+    Notify("Invalid Username or password", NotificationType.Error)
+)
+
+Download file code :
+Download($"https://kccollegeeduin.sharepoint.com/sites/arnav/_layouts/15/download.aspx?SourceUrl=" &EncodeUrl(ThisItem.'Full Path'))
+
+Image file logo code :
+$"https://static2.sharepointonline.com/files/fabric/assets/item-types/24/{Last(Split(ThisItem.'File name with extension',".")).Value}.svg"
+
+Chart button code :
+ClearCollect(
+    colRevenue,
+    { Year: "2019", USA: 47540, UK: 34530, India: 32500 },
+    { Year: "2020", USA: 48900, UK: 39050, India: 34000 },
+    { Year: "2021", USA: 50200, UK: 41080, India: 35000 },
+    { Year: "2022", USA: 52500, UK: 43500, India: 37800 },
+    { Year: "2023", USA: 54750, UK: 42500, India: 37500 }
+);

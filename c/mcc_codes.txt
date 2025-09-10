@@ -1,0 +1,96 @@
+validation
+
+name icon
+icon property - If(!IsBlank(TextInput4.Text), Icon.Check, Icon.Cancel)
+color property -  If(Self.Icon=Icon.Check, Color.Green,Color.Red)
+tooltip propert - If(!IsBlank(TextInput4.Text), "", "The Field can not be blank")
+
+number icon 
+icon property - If( IsMatch(TextInput5.Text,"^\d{10}$" ), Icon.Check, Icon.Cancel )
+tooltip property -If(
+    IsMatch(TextInput5.Text, "^\d{10}$"),
+    "Valid mobile number ✅",
+    "The mobile number must be exactly 10 digits ❌"
+)
+
+
+age icon 
+icon property - If(Value(TextInput6.Text) >= 21, Icon.Check, Icon.Cancel)
+tooltip property - If(Value(TextInput6.Text) >= 21, "", "Age must be >=21")
+
+email icon -
+icon property - If(
+    IsMatch(TextInput7.Text, Match.Email),
+    Icon.Check,
+    Icon.Cancel
+)
+tooltip property - If(
+    IsMatch(TextInputEmail.Text, "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"),
+    "Valid email address ✅",
+    "Enter a valid email address (e.g., example@mail.com) ❌"
+)
+
+
+
+zipcode icon -
+icon property - If( IsMatch(TextInput8.Text,"^\d{6}$" ), Icon.Check, Icon.Cancel )
+
+date icon -
+icon property - If(Weekday(DatePicker1.SelectedDate, StartOfWeek.Monday) <= 5 And DatePicker1.SelectedDate > Today(), Icon.Check, Icon.Cancel)
+tooltip property - If(Weekday(DatePicker1.SelectedDate, StartOfWeek.Monday) > 5, "Choose a day from Monday to Friday", DatePicker1.SelectedDate <= Today(), "Must choose a date in the future", "No date was selected")
+
+
+password icon - 
+icon property- If(IsMatch(TextInput9.Text, "^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,20}$"), Icon.Check, Icon.Lock)
+tooltip property -If(
+    IsMatch(TextInput9.Text, "^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+]).{8,20}$"),
+    "Strong password ✅",
+    "Password must contain letters, numbers, and at least one special character ❌"
+)
+
+
+image property(insert two different images ) - If(
+    IsMatch(TextInput4.Text, "^[A-Za-z\s]+$"),
+    "https://img.freepik.com/free-icon/checked_318-193150.jpg",   // ✅ Replace with a valid "correct" image URL
+    "https://img.freepik.com/free-icon/cancel_318-10371.jpg"  // ❌ Replace with a valid "incorrect" image URL
+)
+
+
+
+
+submit button property - If(
+    Form6.Valid, 
+    SubmitForm(Form6);
+    ResetForm(Form6);
+    Navigate(Screen2),
+    Notify("Please fill all required fields!", NotificationType.Error)
+)
+
+
+drpdown property - 
+1)Distinct(practice1,address)
+2)Filter(practice1, address = Dropdown2.Selected.Value)
+
+search property-
+Search('managers',TextInput2.Text,'firstname')
+
+
+login button property -
+1)If(
+    !IsBlank(
+        LookUp(login1,Title=DataCardValue38.Text && password =DataCardValue39.Text)
+        ),
+        Navigate(Screen1),UpdateContext({ShowForgetMessage:true}))  
+
+
+
+2)If(
+    IsBlank(DataCardValue38.Text) || IsBlank(DataCardValue39.Text),
+    Notify("All fields are required!", NotificationType.Error),
+    If(
+        !IsBlank(LookUp(login1, Title = DataCardValue38.Text && password = DataCardValue39.Text)),
+        Navigate(Screen1),
+        Notify("Wrong credentials! Please try again.", NotificationType.Error);
+        UpdateContext({ShowForgetMessage: true})
+    )
+)
